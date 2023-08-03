@@ -31,7 +31,7 @@ testit <- function(x)
   proc.time() - p1 
 }
 
-#Creamos una lista en donde se guardará la información de las páginas a recorrer
+#Creamos una lista en donde se guardarÃ¡ la informaciÃ³n de las pÃ¡ginas a recorrer
 
 ####1####
 numero_candidato<-list()
@@ -118,8 +118,8 @@ nombre_univ_carrera_grado<-list()
 list_nombre_univ_carrera_grado<-list()
 nombre_univ_carrera_egresado<-list()
 list_nombre_univ_carrera_egresado<-list()
-nombre_univ_carrera_año<-list()
-list_nombre_univ_carrera_año<-list()
+nombre_univ_carrera_aÃ±o<-list()
+list_nombre_univ_carrera_aÃ±o<-list()
 nombre_univ_carrera_comentario<-list()
 list_nombre_univ_carrera_comentario<-list()
 estud_post<-list()
@@ -136,8 +136,8 @@ nombre_post_carrera_maestro<-list()
 list_nombre_post_carrera_maestro<-list()
 nombre_post_carrera_doctor<-list()
 list_nombre_post_carrera_doctor<-list()
-nombre_post_carrera_año<-list()
-list_nombre_post_carrera_año<-list()
+nombre_post_carrera_aÃ±o<-list()
+list_nombre_post_carrera_aÃ±o<-list()
 nombre_post_carrera_coment<-list()
 list_nombre_post_carrera_coment<-list()
 
@@ -521,9 +521,9 @@ total_listas<-list()
 #######################################
 
 #Cambiar el url de acuerdo al Frame
-remDr$navigate("https://plataformaelectoral.jne.gob.pe/OrganizacionesPoliticas/BusquedaAvanzada")
+remDr$navigate("https://plataformahistorico.jne.gob.pe/OrganizacionesPoliticas/BusquedaAvanzada")
 
-#Busca en la página el elemento tipo de elección (congresal)
+#Busca en la pÃ¡gina el elemento tipo de elecciÃ³n (congresal)
 testit(4)
 click_nivel_elec<- remDr$findElement("xpath","/html/body/main/div/div/div[3]/div[8]/select/option[4]")
 #Luego utilizas clic element para realizar un click
@@ -546,7 +546,7 @@ for (row in rows){
   click_nivel_org$clickElement()
   
   
-  #Busca en la página el elemento tipo de elección (primer boton:BUSCAR CANDIDATOS)
+  #Busca en la pÃ¡gina el elemento tipo de elecciÃ³n (primer boton:BUSCAR CANDIDATOS)
   #/html/body/main/div/div/div[5]/button
   click_nivel_org_button <- remDr$findElement("xpath","/html/body/main/div/div/div[5]/button")
   click_nivel_org_button$clickElement()
@@ -570,7 +570,7 @@ for (row in rows){
   click_mas_candidatos_button$clickElement()
   click_mas_candidatos_button$clickElement()
   
-  #Creamos un contador que nos permitirá obtener las divisiones 
+  #Creamos un contador que nos permitirÃ¡ obtener las divisiones 
   count2<-0
   
   #Obtenemos el numero de candidatos por partido, en el caso de accion popular son 160 cand
@@ -584,7 +584,7 @@ for (row in rows){
     print(count2)
     #/html/body/main/div/div/div[8]/article/div[1]/div[3]/div[2]/div[2]/div[2]/button[1]
     
-    #Realizamos un store de los siguientes datos: Puesto al que postula, Expediente de inscripción, Estado
+    #Realizamos un store de los siguientes datos: Puesto al que postula, Expediente de inscripciÃ³n, Estado
     #Puesto al que postula
     #/html/body/main/div/div/div[8]/article/div[1]/div[1]/div[2]/div[2]/p[2]
 
@@ -593,7 +593,7 @@ for (row in rows){
     
     puesto[[i]]<-remDr$findElements("xpath",paste0("/html/body/main/div/div/div[8]/article/div[1]/div[",toString(count2),"]/div[2]/div[2]/p[2]"))
     list_puesto[[i]]<-unlist(lapply(puesto[[i]],function(x){x$getElementText()}))
-    #Expediente de inscripción
+    #Expediente de inscripciÃ³n
     #/html/body/main/div/div/div[8]/article/div[1]/div[1]/div[2]/div[2]/p[3]
     #/html/body/main/div/div/div[8]/article/div[1]/div[2]/div[2]/div[2]/p[3]
     exp[[i]]<-remDr$findElements("xpath",paste0("/html/body/main/div/div/div[8]/article/div[1]/div[",toString(count2),"]/div[2]/div[2]/p[3]"))
@@ -700,7 +700,7 @@ for (row in rows){
     list_fecha_nacimiento[[i]]<-unlist(lapply(fecha_nacimiento[[i]],function(x){x$getElementText()}))
     
     #Lugar de nacimiento
-    #País
+    #PaÃ­s
     #//*[@id="datos_personales"]/div[3]/div[1]/label[2]
     pais[[i]]<-remDr$findElements("xpath","//*[@id='datos_personales']/div[3]/div[1]/label[2]")
     list_pais[[i]]<-unlist(lapply(pais[[i]],function(x){x$getElementText()}))
@@ -715,13 +715,13 @@ for (row in rows){
     prov[[i]]<-remDr$findElements("xpath","//*[@id='datos_personales']/div[3]/div[3]/label[2]")
     list_prov[[i]]<-unlist(lapply(prov[[i]],function(x){x$getElementText()}))
     
-    #Organización por la cual postula
+    #OrganizaciÃ³n por la cual postula
     #//*[@id="datos_personales"]/div[6]/div/label[2]
     org_pol[[i]]<-remDr$findElements("xpath","//*[@id='datos_personales']/div[6]/div/label[2]")
     list_org_pol[[i]]<-unlist(lapply(org_pol[[i]],function(x){x$getElementText()}))
     
     #Experiencia laboral
-    #NOMBRE DEL CENTRO DE PRESTACIÓN DEL SERVICIO O TRABAJO
+    #NOMBRE DEL CENTRO DE PRESTACIÃ“N DEL SERVICIO O TRABAJO
     
     nombre_centro_labor[[i]]<-remDr$findElements("xpath","//*[@id='atcRegistros']/div[1]/div/label[2]")
     list_nombre_centro_labor[[i]]<-unlist(lapply(nombre_centro_labor[[i]],function(x){x$getElementText()}))
@@ -731,13 +731,13 @@ for (row in rows){
     #RUC EMPRESA (OPCIONAL):
     nombre_ruc_labor[[i]]<-remDr$findElements("xpath","//*[@id='atcRegistros']/div[2]/div[2]/label[2]")
     list_nombre_ruc_labor[[i]]<-unlist(lapply(nombre_ruc_labor[[i]],function(x){x$getElementText()}))
-    #Dirección
+    #DirecciÃ³n
     nombre_direccion_labor[[i]]<-remDr$findElements("xpath","//*[@id='atcRegistros']/div[3]/div[1]/label[2]")
     list_nombre_direccion_labor[[i]]<-unlist(lapply(nombre_direccion_labor[[i]],function(x){x$getElementText()}))
-    #Desde (Año)
+    #Desde (AÃ±o)
     nombre_desde_labor[[i]]<-remDr$findElements("xpath","//*[@id='atcRegistros']/div[3]/div[2]/label[2]")
     list_nombre_desde_labor[[i]]<-unlist(lapply(nombre_desde_labor[[i]],function(x){x$getElementText()}))
-    #Hasta (Año)
+    #Hasta (AÃ±o)
     nombre_hasta_labor[[i]]<-remDr$findElements("xpath","//*[@id='atcRegistros']/div[3]/div[3]/label[2]")
     list_nombre_hasta_labor[[i]]<-unlist(lapply(nombre_hasta_labor[[i]],function(x){x$getElementText()}))
     #Pais
@@ -762,7 +762,7 @@ for (row in rows){
     
     total_laboral[[i]]<-df_laboral
     
-    ###Educación###
+    ###EducaciÃ³n###
     #Cuenta con estudios primarios
     estud_prim[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[3]/div[1]/label[2]")
     list_estud_prim[[i]]<-unlist(lapply(estud_prim[[i]],function(x){x$getElementText()}))
@@ -775,8 +775,8 @@ for (row in rows){
     #Estudios secundarios concluidos
     estud_sec_concl[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[4]/div[2]/label[2]")
     list_estud_sec_concl[[i]]<-unlist(lapply(estud_sec_concl[[i]],function(x){x$getElementText()}))
-    #####Estudios técnicos#######
-    #Cuenta con estudios técnicos
+    #####Estudios tÃ©cnicos#######
+    #Cuenta con estudios tÃ©cnicos
     estud_tec[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[6]/div/label[2]")
     list_estud_tec[[i]]<-unlist(lapply(estud_tec[[i]],function(x){x$getElementText()}))
     #Nombre del centro de estudios
@@ -816,15 +816,15 @@ for (row in rows){
     #Concluidos
     nombre_univ_carrera_concl[[i]]<-remDr$findElements("xpath","//*[@id='verUniversitario1']/article/div[1]/div[2]/label[2]")
     list_nombre_univ_carrera_concl[[i]]<-unlist(lapply(nombre_univ_carrera_concl[[i]],function(x){x$getElementText()}))
-    #Grado o título
+    #Grado o tÃ­tulo
     nombre_univ_carrera_grado[[i]]<-remDr$findElements("xpath","//*[@id='verUniversitario1']/article/div[2]/div[1]/label[2]")
     list_nombre_univ_carrera_grado[[i]]<-unlist(lapply(nombre_univ_carrera_grado[[i]],function(x){x$getElementText()}))
     #Egresado
     nombre_univ_carrera_egresado[[i]]<-remDr$findElements("xpath","//*[@id='verUniversitario1']/article/div[2]/div[2]/label[2]")
     list_nombre_univ_carrera_egresado[[i]]<-unlist(lapply(nombre_univ_carrera_egresado[[i]],function(x){x$getElementText()}))
-    #Año de obtención
-    nombre_univ_carrera_año[[i]]<-remDr$findElements("xpath","//*[@id='verUniversitario1']/article/div[3]/div[1]/label[2]")
-    list_nombre_univ_carrera_año[[i]]<-unlist(lapply(nombre_univ_carrera_año[[i]],function(x){x$getElementText()}))
+    #AÃ±o de obtenciÃ³n
+    nombre_univ_carrera_aÃ±o[[i]]<-remDr$findElements("xpath","//*[@id='verUniversitario1']/article/div[3]/div[1]/label[2]")
+    list_nombre_univ_carrera_aÃ±o[[i]]<-unlist(lapply(nombre_univ_carrera_aÃ±o[[i]],function(x){x$getElementText()}))
     #Comentario
     nombre_univ_carrera_comentario[[i]]<-remDr$findElements("xpath","//*[@id='verUniversitario1']/article/div[3]/div[2]/label[2]")
     list_nombre_univ_carrera_comentario[[i]]<-unlist(lapply(nombre_univ_carrera_comentario[[i]],function(x){x$getElementText()}))
@@ -836,7 +836,7 @@ for (row in rows){
     #Nombre del centro de estudios
     nombre_post[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[14]/div[1]/label[2]")
     list_nombre_post[[i]]<-unlist(lapply(nombre_post[[i]],function(x){x$getElementText()}))
-    #Grado o título
+    #Grado o tÃ­tulo
     nombre_post_carrera_grado[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[14]/div[2]/label[2]")
     list_nombre_post_carrera_grado[[i]]<-unlist(lapply(nombre_post_carrera_grado[[i]],function(x){x$getElementText()}))
     #Concluidos
@@ -853,9 +853,9 @@ for (row in rows){
     #Doctor
     nombre_post_carrera_doctor[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[16]/div[2]/label[2]")
     list_nombre_post_carrera_doctor[[i]]<-unlist(lapply(nombre_post_carrera_doctor[[i]],function(x){x$getElementText()}))
-    #Año de obtención
-    nombre_post_carrera_año[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[16]/div[3]/label[2]")
-    list_nombre_post_carrera_año[[i]]<-unlist(lapply(nombre_post_carrera_año[[i]],function(x){x$getElementText()}))
+    #AÃ±o de obtenciÃ³n
+    nombre_post_carrera_aÃ±o[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[16]/div[3]/label[2]")
+    list_nombre_post_carrera_aÃ±o[[i]]<-unlist(lapply(nombre_post_carrera_aÃ±o[[i]],function(x){x$getElementText()}))
     #Comentario
     nombre_post_carrera_coment[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[4]/div[17]/div/label[2]")
     list_nombre_post_carrera_coment[[i]]<-unlist(lapply(nombre_post_carrera_coment[[i]],function(x){x$getElementText()}))
@@ -878,7 +878,7 @@ for (row in rows){
     list_falla1[[i]]<- unlist(lapply(falla1[[i]],function(x){x$getElementText()}))
     
     
-    #RELACIÓN DE SENTENCIAS QUE DECLAREN FUNDADAS LAS DEMANDAS INTERPUESTAS CONTRA LOS CANDIDATOS(AS) POR INCUMPLIMIENTO DE OBLIGACIONES ALIMENTARIAS, CONTRACTUALES, LABORALES O POR INCURRIR EN VIOLENCIA FAMILIAR, QUE HUBIERAN QUEDADO FIRME
+    #RELACIÃ“N DE SENTENCIAS QUE DECLAREN FUNDADAS LAS DEMANDAS INTERPUESTAS CONTRA LOS CANDIDATOS(AS) POR INCUMPLIMIENTO DE OBLIGACIONES ALIMENTARIAS, CONTRACTUALES, LABORALES O POR INCURRIR EN VIOLENCIA FAMILIAR, QUE HUBIERAN QUEDADO FIRME
     #MATERIA DE LA DEMANDA
     #//*[@id="sije"]/main/section/article/section/div/div/table/tbody/tr/td/section[8]/section/article/div[1]/div[1]/label[2]
     mat_demanda[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[8]/section/article/div[1]/div[1]/label[2]")
@@ -896,7 +896,7 @@ for (row in rows){
     falla2[[i]]<-remDr$findElements("xpath","//*[@id='sije']/main/section/article/section/div/div/table/tbody/tr/td/section[8]/section/article/div[2]/div/label[2]")
     list_falla2[[i]]<-unlist(lapply(falla2[[i]], function(x){x$getElementText()}))
     
-    ###DECLARACIÓN JURADA DE INGRESOS DE BIENES Y RENTAS###
+    ###DECLARACIÃ“N JURADA DE INGRESOS DE BIENES Y RENTAS###
     #Remuneracion bruta anual (sector publico)
     #//*[@id='frmIng']/div[2]/table/tbody/tr[1]/td[2]/label
     #/html/body/main/section/article/section/div/div/table/tbody/tr/td/section[9]/section/article[1]/form/div[2]/table/tbody/tr[1]/td[2]/label
@@ -956,7 +956,7 @@ for (row in rows){
     
     
     ###Bienes Inmuebles del Declarante y Sociedad de Gananciales###
-    #N°
+    #NÂ°
     #//*[@id="BienesInmuebles"]/div[2]/table/tbody/tr[1]/td[1]
     
     inm_numero[[i]]<-remDr$findElements("xpath","//*[@id='BienesInmuebles']/div[2]/table/tbody/tr[1]/td[1]")
@@ -1471,7 +1471,7 @@ for (row in rows){
     inm_total[[i]]<-remDr$findElements("xpath","//*[@id='BienesMuebles']/div[2]/div/label[2]")
     list_inm_total[[i]]<-unlist(lapply(inm_total[[i]], function(x){x$getElementText()}))
     
-    #Vehículos
+    #VehÃ­culos
     #Numero
     #//*[@id="BienesMuebles"]/div[3]/table/tbody/tr[1]/td[1]
     #//*[@id="BienesMuebles"]/div[3]/table/tbody/tr/td[1]
@@ -1527,7 +1527,7 @@ for (row in rows){
       list_inm_numero_vehiculo5[[i]]<-unlist(lapply(inm_numero_vehiculo5[[i]], function(x){x$getElementText()}))
     }
     
-    #Vehículo
+    #VehÃ­culo
     #//*[@id="BienesMuebles"]/div[3]/table/tbody/tr[1]/td[2]/label
     
     inm_vehiculo[[i]]<-remDr$findElements("xpath","//*[@id='BienesMuebles']/div[3]/table/tbody/tr/td[2]/label")
@@ -1767,10 +1767,10 @@ for (row in rows){
                          unlist(list_nombre_tec_carrera_concl[[i]]),unlist(list_nombre_tec_carrera_com[[i]]),unlist(list_estud_no_univ[[i]]),
                          unlist(list_nombre_no_univ[[i]]),unlist(list_nombr_no_univ_carrera[[i]]),unlist(list_nombre_no_univ_carrera_concl[[i]]),
                          unlist(list_estud_univ[[i]]),unlist(list_nombre_univ[[i]]),unlist(list_nombre_univ_carrera_concl[[i]]),
-                         unlist(list_nombre_univ_carrera_grado[[i]]),unlist(list_nombre_univ_carrera_egresado[[i]]),unlist(list_nombre_univ_carrera_año[[i]]),
+                         unlist(list_nombre_univ_carrera_grado[[i]]),unlist(list_nombre_univ_carrera_egresado[[i]]),unlist(list_nombre_univ_carrera_aÃ±o[[i]]),
                          unlist(list_nombre_univ_carrera_comentario[[i]]),unlist(list_estud_post[[i]]),unlist(list_nombre_post[[i]]),
                          unlist(list_nombre_post_carrera_grado[[i]]),unlist(list_nombre_post_carrera_concl[[i]]),unlist(list_nombre_post_carrera_egresado[[i]]),
-                         unlist(list_nombre_post_carrera_maestro[[i]]),unlist(list_nombre_post_carrera_doctor[[i]]),unlist(list_nombre_post_carrera_año[[i]]),
+                         unlist(list_nombre_post_carrera_maestro[[i]]),unlist(list_nombre_post_carrera_doctor[[i]]),unlist(list_nombre_post_carrera_aÃ±o[[i]]),
                          unlist(list_nombre_post_carrera_coment[[i]]),unlist(list_org_pol[[i]]),unlist(list_fecha[[i]]),unlist(list_delito[[i]]),
                          unlist(list_falla1[[i]]),unlist(list_mat_demanda[[i]]),unlist(list_nro_expediente[[i]]),
                          unlist(list_juzg_penal[[i]]),unlist(list_falla2[[i]]),unlist(list_rba_publico[[i]]),unlist(list_rba_privado[[i]]),unlist(list_rba_total[[i]]),unlist(list_rba_publico_ind[[i]]),
@@ -1814,17 +1814,17 @@ for (row in rows){
     
     testit(4)
     
-    #Regresamos a la página donde están los candidatos
+    #Regresamos a la pÃ¡gina donde estÃ¡n los candidatos
     remDr$switchToWindow(allWindows[[1]])
     
     testit(4)
     
-    #Creamos este loop para que cuando se llegue al total de candidatos total por partido se pase automáticamente
-    #al siguiente partido político
+    #Creamos este loop para que cuando se llegue al total de candidatos total por partido se pase automÃ¡ticamente
+    #al siguiente partido polÃ­tico
     if(count2==can){
       
       for(j in 1:25){
-        #Guaradmos en una lista de listas la información de los candidatos al congreso de cada partido
+        #Guaradmos en una lista de listas la informaciÃ³n de los candidatos al congreso de cada partido
         #Obtendremos 25 listas en las cuales se tiene tantas listas como candidatos tiene el partido
         total_listas[[j]]<-list(total_0,total_1,total_laboral)
         
@@ -1912,8 +1912,8 @@ for (row in rows){
         list_nombre_univ_carrera_grado<-list()
         nombre_univ_carrera_egresado<-list()
         list_nombre_univ_carrera_egresado<-list()
-        nombre_univ_carrera_año<-list()
-        list_nombre_univ_carrera_año<-list()
+        nombre_univ_carrera_aÃ±o<-list()
+        list_nombre_univ_carrera_aÃ±o<-list()
         nombre_univ_carrera_comentario<-list()
         list_nombre_univ_carrera_comentario<-list()
         estud_post<-list()
@@ -1930,8 +1930,8 @@ for (row in rows){
         list_nombre_post_carrera_maestro<-list()
         nombre_post_carrera_doctor<-list()
         list_nombre_post_carrera_doctor<-list()
-        nombre_post_carrera_año<-list()
-        list_nombre_post_carrera_año<-list()
+        nombre_post_carrera_aÃ±o<-list()
+        list_nombre_post_carrera_aÃ±o<-list()
         nombre_post_carrera_coment<-list()
         list_nombre_post_carrera_coment<-list()
         
